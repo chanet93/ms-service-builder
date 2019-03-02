@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: auth-jwt
+    jwtSecret: glic-ms-jwt
+    jwtExpirationInMs: 180000000
+    jwtExcludePath: /**/auth/login,/**/annon/**
+  profiles:
+    active: test
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb;MVCC=true;MODE=Oracle;LOCK_TIMEOUT=10000;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password: sa
+    platform: h2
+    name: testDatasource
+  jpa:
+    hibernate:
+      ddl-auto: create
+      use-new-id-generator-mappings: true
+      generate-ddl: false
+      database-platform:  org.hibernate.dialect.H2Dialect
+      properties:
+        hibernate:
+          show_sql: true
+          format_sql: true

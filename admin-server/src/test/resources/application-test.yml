@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: admin-server
+    jwtSecret: glic-ms-jwt
+    jwtExcludePath:
+  cache:
+    type: none
+  profiles:
+    active: test
+logging:
+  level:
+    org:
+      hibernate:
+        type: info

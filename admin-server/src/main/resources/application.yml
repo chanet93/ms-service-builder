@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: admin-server
+  boot:
+    admin:
+      discovery:
+        ignored-services: consul
+      ui:
+        brand: '<img src="logo-glic.png"><span>Glic-Gateway Monitor</span>'
+        title: 'Glic-Gateway Monitor'
+        favicon: 'favicon.png'
+server:
+  port: 8888
+management.endpoints.web.exposure.include: '*'
