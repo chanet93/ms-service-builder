@@ -13,6 +13,7 @@
         <module>admin-server</module>
         <module>auth-jwt</module>
 	    <module>glibrary</module>
+        <module>crypto-utils</module>
     </modules>
 
 </project>
