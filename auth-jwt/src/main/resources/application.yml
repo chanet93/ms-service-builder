@@ -25,6 +25,9 @@ spring:
         jdbc.lob.non_contextual_creation: true
 server:
   port: 8180
+  error:
+    include-stacktrace: never
+    include-exception: false
 logging:
   level:
     org:

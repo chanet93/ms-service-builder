@@ -11,4 +11,7 @@ spring:
         favicon: 'favicon.png'
 server:
   port: 8888
+  error:
+    include-stacktrace: never
+    include-exception: false
 management.endpoints.web.exposure.include: '*'

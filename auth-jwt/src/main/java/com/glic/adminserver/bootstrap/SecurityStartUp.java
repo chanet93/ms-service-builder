@@ -23,13 +23,20 @@ public class SecurityStartUp implements ApplicationListener<ApplicationReadyEven
    @Autowired
    private PasswordEncoder passwordEncoder;
 
+   private boolean started = false;
+
    @Override
    public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent) {
-      try {
-         createTestingUser("root@root.com", "root", EAppRole.ADMIN, "root");
-      } catch (Exception e) {
-         LOG.error("Error on start up", e);
+
+      if (!started) {
+         try {
+            createTestingUser("root@root.com", "root", EAppRole.ADMIN, "root");
+         } catch (Exception e) {
+            LOG.error("Error on start up", e);
+         }
+         this.started = true;
       }
+
    }
 
    private void createTestingUser(String email, String password, EAppRole role, String userToShow) {
