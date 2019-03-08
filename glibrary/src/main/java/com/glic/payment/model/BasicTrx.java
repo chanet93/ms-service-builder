@@ -17,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
@@ -89,14 +90,10 @@ public class BasicTrx {
 
    private String cardTokenOneWay;
 
-   @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-   @JsonSerialize(using = LocalDateTimeSerializer.class)
-   @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+   @GlicLocalDateTime
    private LocalDateTime CardTokenExpDateTime;
 
-   @JsonFormat(pattern = "yyyy-MM-dd")
-   @JsonSerialize(using = LocalDateSerializer.class)
-   @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+   @GlicLocalDate
    private LocalDate cardExpDate;
 
    private String track2;
@@ -338,44 +335,28 @@ public class BasicTrx {
    private String settExtraDataRequest;
 
    //Date time fields
-   @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-   @JsonSerialize(using = LocalDateTimeSerializer.class)
-   @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+   @GlicLocalDateTime
    private LocalDateTime dtRequest;
 
-   @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-   @JsonSerialize(using = LocalDateTimeSerializer.class)
-   @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+   @GlicLocalDateTime
    private LocalDateTime dtResponse;
 
-   @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-   @JsonSerialize(using = LocalDateTimeSerializer.class)
-   @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+   @GlicLocalDateTime
    private LocalDateTime dtAuthorization;
 
-   @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-   @JsonSerialize(using = LocalDateTimeSerializer.class)
-   @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+   @GlicLocalDateTime
    private LocalDateTime dtSettlement;
 
-   @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-   @JsonSerialize(using = LocalDateTimeSerializer.class)
-   @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+   @GlicLocalDateTime
    private LocalDateTime dtRequestBranchTz;
 
-   @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-   @JsonSerialize(using = LocalDateTimeSerializer.class)
-   @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+   @GlicLocalDateTime
    private LocalDateTime dtResponseBranchTz;
 
-   @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-   @JsonSerialize(using = LocalDateTimeSerializer.class)
-   @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+   @GlicLocalDateTime
    private LocalDateTime dtAuthorizationBranchTz;
 
-   @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-   @JsonSerialize(using = LocalDateTimeSerializer.class)
-   @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+   @GlicLocalDateTime
    private LocalDateTime dtSettlementBranchTz;
 
    //Payment Page attributes
