@@ -16,6 +16,6 @@ public class LoginRequest {
    @NotBlank
    private String password;
 
-   private EAppRole role;
+   private AppRole role;
 
 }

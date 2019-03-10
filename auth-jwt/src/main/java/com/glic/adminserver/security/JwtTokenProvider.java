@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
+import com.glic.adminserver.model.AppUser;
+
 @Component
 public class JwtTokenProvider {
 
@@ -39,7 +41,7 @@ public class JwtTokenProvider {
             .setExpiration(expiryDate)
             .signWith(SignatureAlgorithm.HS512, jwtSecret)
             .claim(ENTITY_ID_CLAIM, userPrincipal.getEntityId())
-            .claim(GENERAL_ROLE_CLAIM, userPrincipal.getRole().name())
+            .claim(GENERAL_ROLE_CLAIM, userPrincipal.getRole())
             .compact();
    }
 

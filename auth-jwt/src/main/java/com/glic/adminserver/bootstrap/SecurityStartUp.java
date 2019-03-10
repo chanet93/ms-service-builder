@@ -8,9 +8,10 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import com.glic.adminserver.security.AppUser;
-import com.glic.adminserver.security.AppUserRepository;
-import com.glic.jwt.EAppRole;
+import com.glic.adminserver.model.AppUser;
+import com.glic.adminserver.entities.AppUserRepository;
+import com.glic.adminserver.model.EUserStatus;
+import com.glic.jwt.AppRole;
 
 @Component
 public class SecurityStartUp implements ApplicationListener<ApplicationReadyEvent> {
@@ -27,19 +28,19 @@ public class SecurityStartUp implements ApplicationListener<ApplicationReadyEven
 
    @Override
    public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent) {
-
       if (!started) {
          try {
-            createTestingUser("root@root.com", "root", EAppRole.ADMIN, "root");
+            createTestingUser("root@root.com", "root", AppRole.ROLE_ADMIN, "root", EUserStatus.ACTIVE);
+            createTestingUser("deleted@root.com", "deleted", AppRole.ROLE_ADMIN, "deleted user", EUserStatus.DELETED);
+            createTestingUser("inactive@root.com", "inactive", AppRole.ROLE_ADMIN, "inactive user", EUserStatus.INACTIVE);
          } catch (Exception e) {
             LOG.error("Error on start up", e);
          }
          this.started = true;
       }
-
    }
 
-   private void createTestingUser(String email, String password, EAppRole role, String userToShow) {
+   private void createTestingUser(String email, String password, String role, String userToShow, EUserStatus status) {
       if (appUserRepository.existsByEmail(email)) {
          appUserRepository.deleteByEmail(email);
       }
@@ -52,6 +53,7 @@ public class SecurityStartUp implements ApplicationListener<ApplicationReadyEven
       user.setNameToShow(userToShow);
       user.setDescription(userToShow);
       user.setEntityId("entity-0001");
+      user.setStatus(status);
       appUserRepository.save(user);
 
    }

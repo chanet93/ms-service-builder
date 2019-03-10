@@ -4,6 +4,9 @@ spring:
     jwtSecret: glic-ms-jwt
     jwtExpirationInMs: 18000000
     jwtExcludePath: /**/auth/login,/**/annon/**,/actuator/**,/favicon.ico
+    activeEmail: true
+    fromAddress: mauricio.fenoglio@glic-solutions.com
+    emailBaseLink: http://payment.glic-solutions.com:8380
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://postgres:5432/postgres
@@ -23,6 +26,13 @@ spring:
         show_sql: true
         format_sql: true
         jdbc.lob.non_contextual_creation: true
+  mail:
+    host: in-v3.mailjet.com
+    port: 587
+    username: 6433ea1e0a8bd7bcc1fe0667568a7922
+    password: 0dc74a8cd443c6012263ad317d0b9187
+    properties.mail.smtp.auth: true
+    properties.mail.smtp.starttls.enable: true
 server:
   port: 8180
   error:

@@ -11,6 +11,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.glic.adminserver.entities.AppUserRepository;
+import com.glic.adminserver.model.AppUser;
+import com.glic.adminserver.model.EUserStatus;
+
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
@@ -27,6 +31,10 @@ public class CustomUserDetailsService implements UserDetailsService {
          throw new BadCredentialsException("Bad credentials");
       }
 
+      if (user.get().getStatus() != EUserStatus.ACTIVE) {
+         throw new BadCredentialsException("Bad credentials");
+      }
+
       new AccountStatusUserDetailsChecker().check(user.get());
       return user.get();
    }
@@ -35,7 +43,6 @@ public class CustomUserDetailsService implements UserDetailsService {
    @Transactional
    public UserDetails loadUserById(String email) {
       AppUser user = userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("User not found with id : " + email));
-
       return user;
    }
 

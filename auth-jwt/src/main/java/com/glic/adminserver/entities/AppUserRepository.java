@@ -1,14 +1,16 @@
-package com.glic.adminserver.security;
+package com.glic.adminserver.entities;
 
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.stereotype.Repository;
+
+import com.glic.adminserver.model.AppUser;
 
 /**
  * Created by MauricioF1 on 08/05/2018.
  */
-@RepositoryRestResource(collectionResourceRel = "users", path = "users")
+@Repository
 public interface AppUserRepository extends JpaRepository<AppUser, String> {
 
    Optional<AppUser> findByEmail(String email);
