@@ -15,7 +15,7 @@ import javax.validation.Payload;
 @Constraint(validatedBy = ParametersValidatorImplementation.class)
 public @interface ParametersValidator {
 
-   String message() default "{com.verifone.messages.parameterValidator}";
+   String message() default "{com.glic.messages.parameterValidator}";
 
    Class<?>[] groups() default {};
 
