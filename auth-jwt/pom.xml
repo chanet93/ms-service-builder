@@ -6,6 +6,10 @@
     <groupId>com.glic</groupId>
     <artifactId>auth-jwt</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <properties>
+        <jaxb-runtime.version>2.3.0</jaxb-runtime.version>
+        <shiro-core.version>1.4.0</shiro-core.version>
+    </properties>
     <packaging>jar</packaging>
 
     <parent>
@@ -16,6 +20,11 @@
 
 
     <dependencies>
+        <dependency>
+            <groupId>com.glic</groupId>
+            <artifactId>glibrary</artifactId>
+            <version>${project.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
@@ -45,22 +54,23 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-freemarker</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+            <version>${jaxb-runtime.version}</version>
+        </dependency>
+        <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
             <version>${jjwt.version}</version>
         </dependency>
-
-        <dependency>
-            <groupId>org.glassfish.jaxb</groupId>
-            <artifactId>jaxb-runtime</artifactId>
-            <version>2.3.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.glic</groupId>
-            <artifactId>glibrary</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>

@@ -1,71 +1,120 @@
 package com.glic.adminserver.api;
 
-import java.net.URI;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.Optional;
 
+import javax.annotation.security.RolesAllowed;
+import javax.mail.MessagingException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.glic.adminserver.entities.AppUserRepository;
+import com.glic.adminserver.mails.EmailService;
 import com.glic.adminserver.model.ApiResponse;
+import com.glic.adminserver.model.AppUser;
+import com.glic.adminserver.model.EUserStatus;
 import com.glic.adminserver.model.SignUpRequest;
-import com.glic.adminserver.security.AppUser;
-import com.glic.adminserver.security.AppUserRepository;
-import com.glic.jwt.EAppRole;
+import com.glic.adminserver.security.SecureRandomService;
+import com.glic.jwt.AppRole;
+
+import freemarker.template.TemplateException;
 
 @RestController
 @RequestMapping("/users")
+@RolesAllowed({ AppRole.ROLE_ADMIN, AppRole.ROLE_GPORTAL_ADMIN })
 public class UserController {
-
-   //TODO REVIEW THIS CONTROLLER
-   @Autowired
-   private AppUserRepository appUserRepository;
 
    @Autowired
    PasswordEncoder passwordEncoder;
 
+   @Autowired
+   private AppUserRepository appUserRepository;
+
+   @Autowired
+   private EmailService emailService;
+
+   @Autowired
+   private SecureRandomService secureRandomService;
+
    @RequestMapping(value = "/user", method = RequestMethod.GET)
-   public Iterable<AppUser> listUser() {
-      return appUserRepository.findAll();
+   public Page<AppUser> listUser(Pageable pageable) {
+      return appUserRepository.findAll(pageable);
+   }
+
+   @RequestMapping(value = "/user/{email}", method = RequestMethod.GET)
+   public Optional<AppUser> getUser(@PathVariable(value = "email") String email) {
+      return appUserRepository.findByEmail(email);
+   }
+
+   @RequestMapping(value = "/user", method = RequestMethod.PUT)
+   public ResponseEntity<AppUser> updateUser(@RequestBody AppUser userToUpdate) {
+      Optional<AppUser> user = appUserRepository.findByEmail(userToUpdate.getEmail());
+      if (user.isPresent()) {
+         AppUser userExist = user.get();
+         userExist.setDescription(userToUpdate.getDescription());
+         userExist.setNameToShow(userToUpdate.getNameToShow());
+         return new ResponseEntity<>(appUserRepository.save(userExist), HttpStatus.OK);
+      } else {
+         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+      }
+   }
+
+   @RequestMapping(value = "/user/{email}", method = RequestMethod.DELETE)
+   public ResponseEntity<AppUser> delete(@PathVariable(value = "email") String email) {
+      Optional<AppUser> user = appUserRepository.findByEmail(email);
+      if (user.isPresent()) {
+         AppUser userExist = user.get();
+         userExist.setStatus(EUserStatus.DELETED);
+         return new ResponseEntity<>(appUserRepository.save(userExist), HttpStatus.OK);
+      } else {
+         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+      }
+   }
+
+   @RequestMapping(value = "/user/forcedelete/{email}", method = RequestMethod.DELETE)
+   public ResponseEntity<AppUser> forcedelete(@PathVariable(value = "email") String email) {
+      Optional<AppUser> user = appUserRepository.findByEmail(email);
+      if (user.isPresent()) {
+         AppUser userExist = user.get();
+         appUserRepository.delete(userExist);
+         return new ResponseEntity<>(userExist, HttpStatus.OK);
+      } else {
+         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+      }
    }
 
    @RequestMapping(value = "/user", method = RequestMethod.POST)
-   public AppUser create(@RequestBody AppUser user) {
-      return appUserRepository.save(user);
-   }
-
-   @RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)
-   public String delete(@PathVariable(value = "id") Long id) {
-    //  appUserRepository.deleteById(id);
-      return "success";
-   }
-
-   @PostMapping("/signup")
-   public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
+   public ResponseEntity<AppUser> registerUser(@Valid @RequestBody SignUpRequest userSignUp)
+         throws TemplateException, IOException, MessagingException {
 
       //TODO REVIEW THIS COULD NOT BE DONE
-      if (appUserRepository.existsByEmail(signUpRequest.getEmail())) {
+      if (appUserRepository.existsByEmail(userSignUp.getEmail())) {
          return new ResponseEntity(new ApiResponse(false, "Email Address already in use!"), HttpStatus.BAD_REQUEST);
       }
-
-      // Creating user's account
+      //TODO validate permissions
       AppUser user = new AppUser();
-      user.setEmail(signUpRequest.getEmail());
-      user.setPassword(signUpRequest.getPassword());
-      user.setPassword(passwordEncoder.encode(user.getPassword()));
-      user.setRole(EAppRole.ADMIN);
-      AppUser result = appUserRepository.save(user);
-      URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/users/{username}").buildAndExpand(result.getUsername()).toUri();
-      return ResponseEntity.created(location).body(new ApiResponse(true, "AppUser registered successfully"));
+      user.setEmail(userSignUp.getEmail());
+      user.setNameToShow(userSignUp.getNameToShow());
+      user.setDescription(userSignUp.getDescription());
+      user.setRole(userSignUp.getRole());
+      user.setStatus(EUserStatus.INACTIVE);
+      user.setActivatioToken(secureRandomService.getActivationToken());
+      user.setActivationTokenValidity(LocalDateTime.now().plusMinutes(15));
+      //TODO Send email to activate the user
+      emailService.sendUserEmail(user, EmailService.EmailTypes.ACTIVATION);
+      return new ResponseEntity<>(appUserRepository.save(user), HttpStatus.OK);
    }
 
 }

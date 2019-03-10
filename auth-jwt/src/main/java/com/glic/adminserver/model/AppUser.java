@@ -1,5 +1,6 @@
-package com.glic.adminserver.security;
+package com.glic.adminserver.model;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,7 +16,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.glic.jwt.EAppRole;
+import com.glic.payment.model.GlicLocalDateTime;
 
 import lombok.Data;
 
@@ -31,22 +32,37 @@ public class AppUser implements UserDetails {
    private String nameToShow;
 
    @JsonIgnore
-   @NotBlank
    @Size(max = 255)
    private String password;
+
+   @JsonIgnore
+   @Size(max = 255)
+   private String activatioToken;
+
+   @GlicLocalDateTime
+   private LocalDateTime activationTokenValidity;
+
+   @JsonIgnore
+   @Size(max = 255)
+   private String recoveryToken;
+
+   @GlicLocalDateTime
+   private LocalDateTime recoveryTokenValidity;
 
    @NotBlank
    @Size(max = 255)
    private String description;
 
-   private EAppRole role;
+   private String role;
 
    private String entityId;
+
+   private EUserStatus status;
 
    @Override
    public Collection<? extends GrantedAuthority> getAuthorities() {
       Set<GrantedAuthority> authorities = new HashSet<>();
-      String roleName = StringUtils.startsWith(role.name(), "ROLE_") ? role.name() : "ROLE_" + role.name();
+      String roleName = StringUtils.startsWith(role, "ROLE_") ? role : "ROLE_" + role;
       authorities.add(new SimpleGrantedAuthority(roleName));
       return authorities;
    }
@@ -58,22 +74,22 @@ public class AppUser implements UserDetails {
 
    @Override
    public boolean isAccountNonExpired() {
-      return true;
+      return this.getStatus() == EUserStatus.ACTIVE;
    }
 
    @Override
    public boolean isAccountNonLocked() {
-      return true;
+      return this.getStatus() == EUserStatus.ACTIVE;
    }
 
    @Override
    public boolean isCredentialsNonExpired() {
-      return true;
+      return this.getStatus() == EUserStatus.ACTIVE;
    }
 
    @Override
    public boolean isEnabled() {
-      return true;
+      return this.getStatus() == EUserStatus.ACTIVE;
    }
 
 }
