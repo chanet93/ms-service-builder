@@ -66,6 +66,14 @@ public class AuthController {
       String jwt = tokenProvider.generateToken(authentication);
       JwtAuthenticationResponse response = new JwtAuthenticationResponse();
       response.setAccessToken(jwt);
+
+      Optional<AppUser> user = appUserRepository.findByEmail(loginRequest.getEmail());
+      if (user.isPresent()) {
+         AppUser userExist = user.get();
+         userExist.setLastLogin(LocalDateTime.now());
+         appUserRepository.save(userExist);
+      }
+
       return ResponseEntity.ok(response);
    }
 

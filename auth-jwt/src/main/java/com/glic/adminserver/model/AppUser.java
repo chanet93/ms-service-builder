@@ -49,6 +49,9 @@ public class AppUser implements UserDetails {
    @GlicLocalDateTime
    private LocalDateTime recoveryTokenValidity;
 
+   @GlicLocalDateTime
+   private LocalDateTime lastLogin;
+
    @NotBlank
    @Size(max = 255)
    private String description;
