@@ -62,6 +62,7 @@ public class TokenizeModel {
       return TokenUtils.constructPan(Pair.of(pre, this.getCardDetails().getCardNumber()));
    }
 
+   //TODO This could be moved to a common class
    @Transient
    public Date getExp() throws ParseException {
       if (Objects.nonNull(this.getCardDetails().getExpiryYear()) && Objects.nonNull(this.getCardDetails().getExpiryMonth()) && Objects.nonNull(
@@ -76,6 +77,7 @@ public class TokenizeModel {
       }
    }
 
+   //TODO This could be moved to a common class
    @Transient
    public Date getTokenExpire() throws ParseException {
       return TokenUtils.getDateFromString(TokenUtils.YYYY_MM_DD, this.tokenExpiryDate);
