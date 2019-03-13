@@ -1,6 +1,9 @@
 package com.glic.gtoken;
 
+import java.time.LocalDate;
 import java.util.Date;
+
+import com.glic.payment.model.GlicLocalDate;
 
 import lombok.Data;
 
@@ -11,21 +14,12 @@ public class DetokenizeResult extends VHTSResult {
 
    private String pan;
 
-   private String panIv;
-
-   private Date exp;
-
-   private String cname;
-
-   private String caddr;
-
-   private String cpcode;
-
-   private String ctype;
+   private String cardholderData;
 
    private String tstatus;
 
-   private Date texp;
+   @GlicLocalDate
+   private LocalDate texp;
 
    private String lpToken;
 

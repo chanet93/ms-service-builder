@@ -7,13 +7,10 @@ import java.util.Date;
 import java.util.Objects;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang3.tuple.Pair;
 
 public class TokenUtils {
 
    public static final String UTC = "UTC";
-
-   public static final String SEQUENCE_PAN_SEPARATOR = ".";
 
    public static final String SEQUENCE_SPLIT_PAN_SEPARATOR = "\\.";
 
@@ -22,6 +19,12 @@ public class TokenUtils {
    public static final String YYYY_MM_DD_T_HH_MM_SS = "yyyy-MM-dd'T'HH:mm:ss";
 
    public static final String YYYY_MM_DD = "yyyy-MM-dd";
+
+   private static final String DEFAULT_DAY = "01";
+
+   public static Date getTokenExpire(String tokenExpiryDate) throws ParseException {
+      return TokenUtils.getDateFromString(TokenUtils.YYYY_MM_DD, tokenExpiryDate);
+   }
 
    public static Date getDateTimeRFC339(String sDate) throws ParseException {
       if (StringUtils.isEmpty(sDate)) {
@@ -48,33 +51,4 @@ public class TokenUtils {
       }
    }
 
-   public static Pair<String, String> getSequenceAndPan(String value) {
-      if (StringUtils.isEmpty(value)) {
-         return null;
-      }
-      String[] split = value.split(SEQUENCE_SPLIT_PAN_SEPARATOR);
-      String pan = "";
-      String sequence = "";
-      if (split.length == 1) {
-         if (value.endsWith(SEQUENCE_PAN_SEPARATOR)) {
-            sequence = split[0];
-         } else {
-            pan = split[0];
-         }
-      } else if (split.length == 2) {
-         sequence = split[0];
-         pan = split[1];
-      }
-      return Pair.of(sequence, pan);
-   }
-
-   public static String constructPan(Pair<String, String> pair) {
-      if (Objects.isNull(pair) || (StringUtils.isEmpty(pair.getKey()) && StringUtils.isEmpty(pair.getValue()))) {
-         return "";
-      } else if (StringUtils.isEmpty(pair.getKey())) {
-         return Objects.toString(pair.getValue(), "");
-      } else {
-         return Objects.toString(pair.getKey(), "") + SEQUENCE_PAN_SEPARATOR + Objects.toString(pair.getValue(), "");
-      }
-   }
 }
