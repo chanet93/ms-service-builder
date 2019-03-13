@@ -33,6 +33,9 @@ public class SecurityStartUp implements ApplicationListener<ApplicationReadyEven
             createTestingUser("root@root.com", "root", AppRole.ROLE_ADMIN, "root", EUserStatus.ACTIVE);
             createTestingUser("deleted@root.com", "deleted", AppRole.ROLE_ADMIN, "deleted user", EUserStatus.DELETED);
             createTestingUser("inactive@root.com", "inactive", AppRole.ROLE_ADMIN, "inactive user", EUserStatus.INACTIVE);
+            //GTOKEN USERS
+            createTestingUser("gtokenonline@glic-solutions.com", "root", AppRole.ROLE_GTOKEN_ONLINE, "inactive user", EUserStatus.ACTIVE);
+            createTestingUser("gtokenadmin@glic-solutions.com", "root", AppRole.ROLE_GTOKEN_ADMIN, "inactive user", EUserStatus.ACTIVE);
          } catch (Exception e) {
             LOG.error("Error on start up", e);
          }
