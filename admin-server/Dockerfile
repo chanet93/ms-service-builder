@@ -1,4 +1,4 @@
-FROM openjdk:11.0.1-slim
+FROM azul/zulu-openjdk-alpine:11.0.2
 VOLUME /tmp
 ARG DEPENDENCY=target/dependency
 COPY ${DEPENDENCY}/BOOT-INF/lib /app/lib
