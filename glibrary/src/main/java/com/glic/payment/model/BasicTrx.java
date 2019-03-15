@@ -91,7 +91,7 @@ public class BasicTrx {
    private String cardTokenOneWay;
 
    @GlicLocalDate
-   private LocalDate CardTokenExpDateTime;
+   private LocalDate cardTokenExpDateTime;
 
    @GlicLocalDate
    private LocalDate cardExpDate;
