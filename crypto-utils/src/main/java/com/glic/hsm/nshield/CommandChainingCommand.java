@@ -12,10 +12,7 @@ import com.glic.hsm.nshield.response.CommandChainingResp;
 import com.glic.hsm.payshield.ErrorsDef;
 import com.glic.hsm.payshield.exception.HsmException;
 
-/**
- * @author erwine1
- * This class process a set of commands in chain mode.
- */
+
 public class CommandChainingCommand extends AbstractCommand implements Command<CommandChainingReq, CommandChainingResp> {
 
    private static final Logger LOGGER = Logger.getLogger(CommandChainingCommand.class.getName());

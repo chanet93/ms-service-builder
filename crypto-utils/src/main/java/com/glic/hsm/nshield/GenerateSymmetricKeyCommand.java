@@ -11,9 +11,7 @@ import com.glic.hsm.commons.Command;
 import com.glic.hsm.nshield.request.GenerateSymmetricKeyReq;
 import com.glic.hsm.nshield.response.GenerateSymmetricKeyResp;
 
-/**
- * @author erwine1
- */
+
 public class GenerateSymmetricKeyCommand extends AbstractCommand implements Command<GenerateSymmetricKeyReq, GenerateSymmetricKeyResp> {
 
    private static final Logger LOGGER = Logger.getLogger(GenerateSymmetricKeyCommand.class.getName());

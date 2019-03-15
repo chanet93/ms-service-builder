@@ -1,8 +1,6 @@
 package com.glic.hsm.nshield.response;
 
-/**
- * @author erwine1
- */
+
 public class HashResp extends NShieldCommandResp {
 
    private byte[] hashValue;

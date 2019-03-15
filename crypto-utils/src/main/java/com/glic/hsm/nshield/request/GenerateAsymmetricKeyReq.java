@@ -2,10 +2,7 @@ package com.glic.hsm.nshield.request;
 
 import com.glic.hsm.nshield.enums.EncryptionTypeEnum;
 
-/**
- * @author erwine1
- * From the two types of key availables , this is used to create keypair
- */
+
 public class GenerateAsymmetricKeyReq extends NShieldCommandReq {
 
 

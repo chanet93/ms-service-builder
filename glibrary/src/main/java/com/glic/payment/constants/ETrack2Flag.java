@@ -12,10 +12,7 @@ import com.glic.payment.model.BasicTrx;
 import com.glic.util.TrackDataStandardUtil;
 import com.glic.util.log.converter.impl.CardConverter;
 
-/**
- * @author MauricioC2
- * @since 20/09/2016
- */
+
 public enum ETrack2Flag implements ITrack2Flag {
 
    NOT_PRESENT(0) {

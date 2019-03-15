@@ -19,9 +19,7 @@ import com.glic.hsm.nshield.request.EncryptReq;
 import com.glic.hsm.nshield.response.EncryptResp;
 import com.glic.hsm.payshield.ErrorsDef;
 
-/**
- * @author erwine1
- */
+
 public class EncryptCommand extends AbstractCommand implements Command<EncryptReq, EncryptResp> {
 
    private static final Logger LOGGER = Logger.getLogger(EncryptCommand.class.getName());

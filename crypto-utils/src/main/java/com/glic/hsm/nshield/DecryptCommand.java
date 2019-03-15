@@ -18,9 +18,7 @@ import com.glic.hsm.commons.Command;
 import com.glic.hsm.nshield.request.DecryptReq;
 import com.glic.hsm.nshield.response.DecryptResp;
 
-/**
- * @author erwine1
- */
+
 public class DecryptCommand extends AbstractCommand implements Command<DecryptReq, DecryptResp> {
 
    private static final Logger LOGGER = Logger.getLogger(DecryptCommand.class.getName());

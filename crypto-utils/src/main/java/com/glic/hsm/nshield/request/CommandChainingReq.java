@@ -7,10 +7,7 @@ import com.glic.hsm.commons.CommandChainingItem;
 import com.glic.hsm.commons.CommandReq;
 import com.glic.hsm.commons.CommandResp;
 
-/**
- * @author erwine1
- * This request represents a list of commands that will be executed in chain mode.
- */
+
 public class CommandChainingReq extends NShieldCommandReq {
 
 	private List<CommandChainingItem<? extends CommandReq, ? extends CommandResp>> commands;

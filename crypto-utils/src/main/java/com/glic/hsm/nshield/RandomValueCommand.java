@@ -10,9 +10,7 @@ import com.glic.hsm.nshield.request.RandomValueReq;
 import com.glic.hsm.nshield.response.RandomValueResp;
 import com.glic.hsm.payshield.ErrorsDef;
 
-/**
- * @author erwine1
- */
+
 public class RandomValueCommand extends AbstractCommand implements Command<RandomValueReq, RandomValueResp> {
 
 	@Override

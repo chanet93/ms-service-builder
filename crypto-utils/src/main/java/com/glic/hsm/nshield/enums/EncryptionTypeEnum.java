@@ -1,9 +1,6 @@
 package com.glic.hsm.nshield.enums;
 
-/**
- * @author erwine1
- * This enum contains the supporte encryption/decryption modes for nShield
- */
+
 public enum EncryptionTypeEnum {
 
 

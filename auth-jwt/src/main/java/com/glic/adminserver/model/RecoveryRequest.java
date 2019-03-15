@@ -5,9 +5,7 @@ import javax.validation.constraints.Size;
 
 import lombok.Data;
 
-/**
- * Created by MauricioF1 on 08/05/2018.
- */
+
 @Data
 public class RecoveryRequest {
 

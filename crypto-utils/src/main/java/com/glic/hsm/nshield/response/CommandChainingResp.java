@@ -6,10 +6,7 @@ import java.util.List;
 import com.glic.hsm.commons.CommandResp;
 import com.glic.hsm.nshield.request.CommandChainingReq;
 
-/**
- * @author erwine1
- * @see CommandChainingReq
- */
+
 public class CommandChainingResp extends CommandResp {
 
 	private List<CommandResp> commandResponses;

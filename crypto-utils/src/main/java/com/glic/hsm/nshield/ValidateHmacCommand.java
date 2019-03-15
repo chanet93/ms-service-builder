@@ -15,9 +15,7 @@ import com.glic.hsm.nshield.request.ValidateHmacReq;
 import com.glic.hsm.nshield.response.ValidateHmacResp;
 import com.glic.hsm.payshield.ErrorsDef;
 
-/**
- * @author erwine1
- */
+
 public class ValidateHmacCommand extends AbstractCommand implements Command<ValidateHmacReq, ValidateHmacResp> {
 
 	private static final Logger LOGGER = Logger.getLogger(ValidateHmacCommand.class.getName());

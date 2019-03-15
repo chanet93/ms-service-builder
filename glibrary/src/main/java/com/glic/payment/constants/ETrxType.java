@@ -1,9 +1,7 @@
 
 package com.glic.payment.constants;
 
-/**
- * @author MauricioF1
- */
+
 public enum ETrxType {
 
    SALE,

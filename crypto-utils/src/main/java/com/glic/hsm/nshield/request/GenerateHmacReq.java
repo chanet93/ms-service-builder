@@ -6,10 +6,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 import com.glic.hsm.nshield.enums.HashTypeEnum;
 
-/**
- * @author erwine1
- * This request will be used when you want to create a hmac from a specific value.
- */
+
 public class GenerateHmacReq extends NShieldCommandReq {
 
    private HashTypeEnum hashTypeEnum;

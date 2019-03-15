@@ -10,9 +10,7 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 import javax.validation.constraints.Pattern;
 
-/**
- * @author T_MarcosC1
- */
+
 @Pattern.List({
       @Pattern(regexp = "[A-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[A-z0-9!#$%&'*+/=?^_`" + "{|}~-]+)*@(?:[A-z0-9](?:[A-z0-9-]*[A-z0-9])?\\.)+[A-z0-9](?:"
             + "[A-z0-9-]*[A-z0-9])?", message = "{com.glic.messages.emailValidator}") })

@@ -4,9 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.glic.util.log.converter.LogConverter;
 
-/**
- * Created by Jorge_L2 on 14/05/2017.
- */
+
 public final class TrackConverter implements LogConverter {
 
    @Override

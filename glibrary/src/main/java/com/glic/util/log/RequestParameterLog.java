@@ -8,9 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.glic.util.log.converter.LogConverter;
 
-/**
- * Created by Jorge_L2 on 22/12/2016.
- */
+
 public class RequestParameterLog {
 
    private static final Map<String, LogConverter> FIELDS_CONVERSION = new HashMap<>();

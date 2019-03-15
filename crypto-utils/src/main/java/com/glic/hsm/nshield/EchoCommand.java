@@ -5,9 +5,7 @@ import com.glic.hsm.nshield.request.EchoReq;
 import com.glic.hsm.nshield.response.EchoResp;
 import com.glic.hsm.payshield.ErrorsDef;
 
-/**
- * @author erwine1
- */
+
 public class EchoCommand extends AbstractCommand implements Command<EchoReq, EchoResp> {
 
    @Override

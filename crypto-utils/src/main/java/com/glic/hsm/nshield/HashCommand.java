@@ -11,9 +11,7 @@ import com.glic.hsm.nshield.request.HashReq;
 import com.glic.hsm.nshield.response.HashResp;
 import com.glic.hsm.payshield.ErrorsDef;
 
-/**
- * @author erwine1
- */
+
 public class HashCommand extends AbstractCommand implements Command<HashReq, HashResp> {
 
 	private static final Logger LOGGER = Logger.getLogger(HashCommand.class.getName());

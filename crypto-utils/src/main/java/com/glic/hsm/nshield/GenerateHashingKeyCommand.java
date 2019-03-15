@@ -12,9 +12,7 @@ import com.glic.hsm.commons.Command;
 import com.glic.hsm.nshield.request.GenerateHashingKeyReq;
 import com.glic.hsm.nshield.response.GenerateHashKeyResp;
 
-/**
- * @author erwine1
- */
+
 public class GenerateHashingKeyCommand extends AbstractCommand implements Command<GenerateHashingKeyReq, GenerateHashKeyResp> {
 
    private static final Logger LOGGER = Logger.getLogger(GenerateHashingKeyCommand.class.getName());

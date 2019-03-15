@@ -1,8 +1,6 @@
 package com.glic.hsm.nshield.response;
 
-/**
- * @author erwine1
- */
+
 public class RandomValueResp extends NShieldCommandResp {
 
    private byte[] bytes;

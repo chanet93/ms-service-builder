@@ -25,9 +25,7 @@ import com.glic.hsm.nshield.response.HashResp;
 import com.glic.hsm.nshield.response.RandomValueResp;
 import com.glic.hsm.nshield.response.ValidateHmacResp;
 
-/**
- * @author erwine1
- */
+
 public class NShieldHsmFactory implements HsmCommandFactory {
 
    private static final Logger LOGGER = Logger.getLogger(NShieldHsmFactory.class.getName());

@@ -5,9 +5,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-/**
- * @author T_DanielB6
- */
+
 public enum ETimeZone {
 
    AFRICA_ABIDJAN("Africa/Abidjan"),

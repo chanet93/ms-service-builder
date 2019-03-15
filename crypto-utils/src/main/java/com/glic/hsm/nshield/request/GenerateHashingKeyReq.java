@@ -2,10 +2,7 @@ package com.glic.hsm.nshield.request;
 
 import com.glic.hsm.nshield.enums.HashTypeEnum;
 
-/**
- * @author erwine1
- * For the availables options to create keys, this will create hashing keys.
- */
+
 public class GenerateHashingKeyReq extends NShieldCommandReq {
 
 

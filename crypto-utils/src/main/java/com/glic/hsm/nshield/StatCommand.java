@@ -5,9 +5,7 @@ import com.glic.hsm.payshield.ErrorsDef;
 import com.glic.hsm.payshield.request.HsmStatsReq;
 import com.glic.hsm.payshield.response.HsmStatsResp;
 
-/**
- * @author erwine1
- */
+
 public class StatCommand extends AbstractCommand implements Command<HsmStatsReq, HsmStatsResp> {
 
 	public static final String SECURITY_WORLD = "SW-12.10.01";

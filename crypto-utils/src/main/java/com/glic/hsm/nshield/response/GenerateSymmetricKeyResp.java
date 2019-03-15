@@ -2,9 +2,7 @@ package com.glic.hsm.nshield.response;
 
 import javax.crypto.SecretKey;
 
-/**
- * @author erwine1
- */
+
 public class GenerateSymmetricKeyResp extends NShieldCommandResp {
 
    private SecretKey secretKey;

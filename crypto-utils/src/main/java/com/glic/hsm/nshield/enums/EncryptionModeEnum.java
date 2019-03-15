@@ -1,9 +1,6 @@
 package com.glic.hsm.nshield.enums;
 
-/**
- * @author erwine1
- * This enum contains the supported encryption modes.
- */
+
 public enum EncryptionModeEnum {
 
    CBC("CBC",16);

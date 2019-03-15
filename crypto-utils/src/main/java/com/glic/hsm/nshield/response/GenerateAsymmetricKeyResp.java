@@ -2,9 +2,7 @@ package com.glic.hsm.nshield.response;
 
 import java.security.KeyPair;
 
-/**
- * @author erwine1
- */
+
 public class GenerateAsymmetricKeyResp extends NShieldCommandResp {
 
    private KeyPair keyPair;

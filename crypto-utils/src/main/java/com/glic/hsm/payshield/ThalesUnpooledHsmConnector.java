@@ -16,9 +16,7 @@ import com.glic.hsm.payshield.connector.HsmConnector;
 import com.glic.hsm.payshield.exception.HsmException;
 import com.glic.hsm.payshield.exception.HsmTimeoutException;
 
-/**
- * @author erwin
- */
+
 public class ThalesUnpooledHsmConnector implements HsmConnector {
 
    private static final Logger LOGGER = Logger.getLogger(ThalesUnpooledHsmConnector.class.getName());

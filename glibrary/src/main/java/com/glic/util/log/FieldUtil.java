@@ -1,8 +1,6 @@
 package com.glic.util.log;
 
-/**
- * Created by Jorge_L2 on 21/12/2016.
- */
+
 public class FieldUtil {
 
    public static void addField(StringBuilder body, String fieldName, Object value, int fieldId) {

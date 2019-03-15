@@ -16,9 +16,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-/**
- * Created by LeonardoJ1 on 11/04/2017.
- */
+
 public class JsonLogger {
 
    public static void parseJson(String content, StringBuilder sb, int fieldId) {

@@ -4,10 +4,7 @@ import java.security.Key;
 
 import com.glic.hsm.nshield.enums.HashTypeEnum;
 
-/**
- * @author erwine1
- * This command will create a request to validate a hmac value vs other values by a given key.
- */
+
 public class ValidateHmacReq extends NShieldCommandReq {
 
    private HashTypeEnum hashTypeEnum;

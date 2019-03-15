@@ -9,9 +9,7 @@ import com.glic.hsm.nshield.request.GenerateAsymmetricKeyReq;
 import com.glic.hsm.nshield.response.GenerateAsymmetricKeyResp;
 import com.glic.hsm.payshield.exception.HsmException;
 
-/**
- * @author erwine1
- */
+
 public class GenerateAsymmetricKeyCommand extends AbstractCommand implements Command<GenerateAsymmetricKeyReq, GenerateAsymmetricKeyResp> {
 
    @Override

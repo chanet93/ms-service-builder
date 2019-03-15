@@ -13,9 +13,7 @@ import com.glic.hsm.nshield.request.GenerateHmacReq;
 import com.glic.hsm.nshield.response.GenerateHmacResp;
 import com.glic.hsm.payshield.ErrorsDef;
 
-/**
- * @author erwine1
- */
+
 public class GenerateHmacCommand extends AbstractCommand implements Command<GenerateHmacReq, GenerateHmacResp> {
 
 	private static final Logger LOGGER = Logger.getLogger(GenerateHmacCommand.class.getName());

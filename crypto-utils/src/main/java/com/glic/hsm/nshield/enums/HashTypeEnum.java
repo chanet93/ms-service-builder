@@ -1,9 +1,6 @@
 package com.glic.hsm.nshield.enums;
 
-/**
- * @author erwine1
- * This enum contains the MAC and  Hashing functions.
- */
+
 public enum HashTypeEnum {
 
 

@@ -4,10 +4,7 @@ import com.glic.gtoken.validators.Required;
 
 import lombok.Data;
 
-/**
- * @author erwin
- * 14/11/2014
- */
+
 
 @Required.List(value = { @Required(mode = Required.OR, fields = { "chdToken", "lpToken" }) })
 @Data

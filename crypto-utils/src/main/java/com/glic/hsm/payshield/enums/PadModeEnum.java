@@ -1,9 +1,6 @@
 package com.glic.hsm.payshield.enums;
 
-/**
- * @author erwine1
- * This enum contains
- */
+
 public enum PadModeEnum {
 
    PKCS1("01"), OAEP("02");

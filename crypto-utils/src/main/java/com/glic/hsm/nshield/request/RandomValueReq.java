@@ -1,9 +1,6 @@
 package com.glic.hsm.nshield.request;
 
-/**
- * @author erwine1
- * This command will be used to create a set of random bytes.
- */
+
 public class RandomValueReq extends NShieldCommandReq {
 
    private int bytesSize;

@@ -6,10 +6,7 @@ import com.glic.hsm.nshield.enums.EncryptionModeEnum;
 import com.glic.hsm.nshield.enums.EncryptionTypeEnum;
 import com.glic.hsm.nshield.enums.PaddingTypeEnum;
 
-/**
- * @author erwine1
- * This request will be used to create a new encrypt command.
- */
+
 public class EncryptReq extends NShieldCommandReq {
 
    private EncryptionTypeEnum encryptionTypeEnum;
