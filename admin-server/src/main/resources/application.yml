@@ -9,9 +9,26 @@ spring:
         brand: '<img src="logo-glic.png"><span>Glic-Gateway Monitor</span>'
         title: 'Glic-Gateway Monitor'
         favicon: 'favicon.png'
+      notify:
+        mail:
+          enabled: true
+          to: mauricio.fenoglio@glic-solutions.com
+          from: no-reply@glic-solutions.com
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: no-reply@glic-solutions.com
+    password: 'e3232FDFASX"#"!"#"%%%%%""!!!23232'
+    properties.mail.smtp.auth: true
+    properties.mail.smtp.starttls.enable: true
 server:
   port: 8888
   error:
     include-stacktrace: never
     include-exception: false
-management.endpoints.web.exposure.include: '*'
+management:
+  endpoints:
+    web:
+      exposure:
+        exclude: ['heapdump']
+        include: '*'
