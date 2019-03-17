@@ -1,6 +1,5 @@
 spring:
   application:
-    name: admin-server
   boot:
     admin:
       discovery:
@@ -21,12 +20,16 @@ spring:
     password: 'e3232FDFASX"#"!"#"%%%%%""!!!23232'
     properties.mail.smtp.auth: true
     properties.mail.smtp.starttls.enable: true
+    test-connection: false
 server:
   port: 8888
   error:
     include-stacktrace: never
     include-exception: false
 management:
+  health:
+    mail:
+      enabled: false
   endpoints:
     web:
       exposure:
