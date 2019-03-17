@@ -1,6 +1,5 @@
 spring:
   application:
-    name: auth-jwt
     jwtSecret: glic-ms-jwt
     jwtExpirationInMs: 18000000
     jwtExcludePath: /**/auth/login,/**/annon/**,/actuator/**,/favicon.ico
@@ -33,6 +32,7 @@ spring:
     password: 'e3232FDFASX"#"!"#"%%%%%""!!!23232'
     properties.mail.smtp.auth: true
     properties.mail.smtp.starttls.enable: true
+    test-connection: false
 server:
   port: 8180
   error:
@@ -44,6 +44,9 @@ logging:
       hibernate:
         type: info
 management:
+  health:
+    mail:
+      enabled: false
   endpoints:
     web:
       exposure:

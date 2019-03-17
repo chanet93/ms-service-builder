@@ -8,3 +8,7 @@ spring:
       enabled: false
       config:
         enabled: false
+  application:
+    name: auth-jw
+logging:
+  path: logs/${spring.application.name}

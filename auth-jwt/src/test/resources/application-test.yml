@@ -1,6 +1,5 @@
 spring:
   application:
-    name: auth-jwt
     jwtSecret: glic-ms-jwt
     jwtExpirationInMs: 180000000
     jwtExcludePath: /**/auth/login,/**/annon/**

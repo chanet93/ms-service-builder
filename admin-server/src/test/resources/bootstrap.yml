@@ -8,3 +8,7 @@ spring:
       enabled: false
       config:
         enabled: false
+  application:
+    name: admin-server
+logging:
+  path: logs/${spring.application.name}

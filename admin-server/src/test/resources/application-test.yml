@@ -1,6 +1,5 @@
 spring:
   application:
-    name: admin-server
     jwtSecret: glic-ms-jwt
     jwtExcludePath:
   cache:
