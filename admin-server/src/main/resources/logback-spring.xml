@@ -4,17 +4,14 @@
     <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
     <include resource="logs/main.xml"/>
 
-    <springProfile name="prod">
+    <springProfile name="showconsole">
         <root level="INFO">
-            <appender-ref ref="main"/>
+            <appender-ref ref="CONSOLE"/>
         </root>
     </springProfile>
 
-    <springProfile name="development">
-         <root level="INFO">
-            <appender-ref ref="CONSOLE"/>
-            <appender-ref ref="main"/>
-        </root>
-    </springProfile>
+    <root level="INFO">
+        <appender-ref ref="main"/>
+    </root>
 
 </configuration>
