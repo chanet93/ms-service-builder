@@ -7,6 +7,6 @@ spring:
         enabled: true
         fail-fast: false
   application:
-    name: auth-jw
+    name: auth-jwt
 logging:
   path: logs/${spring.application.name}
