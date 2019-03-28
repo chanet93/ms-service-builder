@@ -24,6 +24,7 @@
         <maven-jar-plugin.version>2.5</maven-jar-plugin.version>
         <cobertura-maven-plugin.version>2.7</cobertura-maven-plugin.version>
         <maven-surefire-plugin.version>2.18.1</maven-surefire-plugin.version>
+        <jaxb-impl.version>2.3.0</jaxb-impl.version>
     </properties>
 
 
@@ -71,17 +72,17 @@
         <dependency>
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>
-            <version>2.3.0</version>
+            <version>${jaxb-impl.version}</version>
         </dependency>
         <dependency>
             <groupId>com.sun.xml.bind</groupId>
             <artifactId>jaxb-core</artifactId>
-            <version>2.3.0</version>
+            <version>${jaxb-impl.version}</version>
         </dependency>
         <dependency>
             <groupId>com.sun.xml.bind</groupId>
             <artifactId>jaxb-impl</artifactId>
-            <version>2.3.0</version>
+            <version>${jaxb-impl.version}</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>

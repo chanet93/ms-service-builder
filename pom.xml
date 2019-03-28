@@ -14,6 +14,7 @@
         <module>auth-jwt</module>
 	    <module>glibrary</module>
         <module>crypto-utils</module>
+        <module>host-simulator</module>
     </modules>
 
 </project>

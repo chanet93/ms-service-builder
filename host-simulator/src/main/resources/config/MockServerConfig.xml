@@ -1,0 +1,17 @@
+<MockServerConfig>
+    <MockServers>
+        <MockServer>
+            <ServerName>HttpXmlExample</ServerName>
+            <Port>19000</Port>
+            <ServerType>HTTP</ServerType>
+            <Active>true</Active>
+        </MockServer>
+        <MockServer>
+            <ServerName>tcp-example</ServerName>
+            <Port>19080</Port>
+            <ServerType>TCP</ServerType>
+            <Ssl>false</Ssl>
+            <Active>true</Active>
+        </MockServer>
+    </MockServers>
+</MockServerConfig>

@@ -1,0 +1,15 @@
+spring:
+server:
+  port: 9180
+  error:
+    include-stacktrace: never
+    include-exception: false
+management:
+  health:
+    mail:
+      enabled: false
+  endpoints:
+    web:
+      exposure:
+        exclude: ['heapdump']
+        include: '*'

@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 import javax.mail.MessagingException;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.apache.commons.lang.StringUtils;
@@ -59,21 +61,23 @@ public class AuthController {
    private EmailService emailService;
 
    @PostMapping("/login")
-   public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+   public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest, HttpServletResponse httpResponse) {
       Authentication authentication = authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
       SecurityContextHolder.getContext().setAuthentication(authentication);
       String jwt = tokenProvider.generateToken(authentication);
       JwtAuthenticationResponse response = new JwtAuthenticationResponse();
       response.setAccessToken(jwt);
-
       Optional<AppUser> user = appUserRepository.findByEmail(loginRequest.getEmail());
       if (user.isPresent()) {
          AppUser userExist = user.get();
          userExist.setLastLogin(LocalDateTime.now());
          appUserRepository.save(userExist);
       }
-
+      Cookie jwtCookie = new Cookie("JWT", jwt);
+      //TODO add SSL and change this to secure.
+      jwtCookie.setSecure(false);
+      httpResponse.addCookie(jwtCookie);
       return ResponseEntity.ok(response);
    }
 
@@ -100,7 +104,7 @@ public class AuthController {
    public ResponseEntity<AppUser> sendRecovery(@PathVariable(value = "email") String email)
          throws TemplateException, IOException, MessagingException {
       Optional<AppUser> user = appUserRepository.findByEmail(email);
-      if (user.isPresent() && user.get().getStatus()==EUserStatus.ACTIVE) {
+      if (user.isPresent() && user.get().getStatus() == EUserStatus.ACTIVE) {
          AppUser userExist = user.get();
          userExist.setRecoveryToken(secureRandomService.getActivationToken());
          userExist.setRecoveryTokenValidity(LocalDateTime.now().plusMinutes(15));
