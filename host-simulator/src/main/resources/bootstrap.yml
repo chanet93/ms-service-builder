@@ -1,0 +1,12 @@
+spring:
+  cloud:
+    consul:
+      host: consul
+      port: 8500
+      config:
+        enabled: true
+        fail-fast: false
+  application:
+    name: host-simulator
+logging:
+  path: logs/${spring.application.name}
