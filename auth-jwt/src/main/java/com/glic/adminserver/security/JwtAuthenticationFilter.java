@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -18,6 +19,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
+
+import com.glic.jwt.JwtUtil;
 
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
@@ -34,25 +37,31 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
          throws ServletException, IOException {
       try {
          String jwt = getJwtFromRequest(request);
-
-         if (StringUtils.hasText(jwt) && tokenProvider.validateToken(jwt)) {
-            String email = tokenProvider.getUserIdFromJWT(jwt);
-
-            UserDetails userDetails = customUserDetailsService.loadUserById(email);
-            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null,
-                  userDetails.getAuthorities());
-            authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+         if (StringUtils.hasText(jwt)) {
+            if (tokenProvider.validateToken(jwt)) {
+               String email = tokenProvider.getUserIdFromJWT(jwt);
+               UserDetails userDetails = customUserDetailsService.loadUserById(email);
+               UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null,
+                     userDetails.getAuthorities());
+               authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+               SecurityContextHolder.getContext().setAuthentication(authentication);
+               filterChain.doFilter(request, response);
+            } else {
+               //set remove cookie just in case
+               Cookie cookie = JwtUtil.getJwtCookie(jwt);
+               cookie.setMaxAge(0);
+               response.addCookie(cookie);
+               response.setStatus(HttpServletResponse.SC_UNAUTHORIZED, "The token is not valid.");
+            }
+         } else {
+            filterChain.doFilter(request, response);
          }
       } catch (Exception ex) {
-         logger.error("Could not set user authentication in security context", ex);
+         LOG.error("Could not set user authentication in security context", ex);
+         filterChain.doFilter(request, response);
       }
 
-      filterChain.doFilter(request, response);
    }
-
-
 
 }
 
