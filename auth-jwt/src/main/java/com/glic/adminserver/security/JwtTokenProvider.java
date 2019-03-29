@@ -9,6 +9,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -51,6 +52,10 @@ public class JwtTokenProvider {
    }
 
    public boolean validateToken(String authToken) {
+      if (StringUtils.isEmpty(authToken)) {
+         return false;
+      }
+
       try {
          Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
          return true;

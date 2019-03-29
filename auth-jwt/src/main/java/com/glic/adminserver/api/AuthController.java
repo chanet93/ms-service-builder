@@ -1,12 +1,14 @@
 package com.glic.adminserver.api;
 
 import static com.glic.jwt.JwtUtil.getJwtCookie;
+import static com.glic.jwt.JwtUtil.getJwtFromRequest;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
 import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
@@ -19,6 +21,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -78,6 +81,12 @@ public class AuthController {
 
       httpResponse.addCookie(getJwtCookie(jwt));
       return ResponseEntity.ok(response);
+   }
+
+   @GetMapping("/validateToken")
+   public ResponseEntity<?> validateToken(HttpServletRequest request) {
+      String jwt = getJwtFromRequest(request);
+      return ResponseEntity.ok(tokenProvider.validateToken(jwt));
    }
 
    @RequestMapping(value = "/activate", method = RequestMethod.PUT)
