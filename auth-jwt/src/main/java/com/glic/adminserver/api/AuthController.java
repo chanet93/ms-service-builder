@@ -1,11 +1,12 @@
 package com.glic.adminserver.api;
 
+import static com.glic.jwt.JwtUtil.getJwtCookie;
+
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
 import javax.mail.MessagingException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
@@ -74,10 +75,8 @@ public class AuthController {
          userExist.setLastLogin(LocalDateTime.now());
          appUserRepository.save(userExist);
       }
-      Cookie jwtCookie = new Cookie("JWT", jwt);
-      //TODO add SSL and change this to secure.
-      jwtCookie.setSecure(false);
-      httpResponse.addCookie(jwtCookie);
+
+      httpResponse.addCookie(getJwtCookie(jwt));
       return ResponseEntity.ok(response);
    }
 
