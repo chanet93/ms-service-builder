@@ -13,14 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import com.glic.payment.constants.ECardType;
 import com.glic.payment.constants.EResponseCode;
 import com.glic.payment.constants.ESettlementIndicator;
@@ -92,6 +86,8 @@ public class BasicTrx {
 
    @GlicLocalDate
    private LocalDate cardTokenExpDateTime;
+
+   private String tokenEntityId;
 
    @GlicLocalDate
    private LocalDate cardExpDate;

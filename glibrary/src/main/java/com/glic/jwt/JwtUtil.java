@@ -8,7 +8,7 @@ import org.springframework.web.util.WebUtils;
 
 public class JwtUtil {
 
-   public static final String ENTITY_ID_CLAIM = "ENTITY_ID";
+   public static final String EMAIL_CLAIM = "EMAIL_CLAIM";
 
    public static final String GENERAL_ROLE_CLAIM = "GENERAL_ROLE_CLAIM";
 

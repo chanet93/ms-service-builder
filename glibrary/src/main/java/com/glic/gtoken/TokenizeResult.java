@@ -2,9 +2,6 @@ package com.glic.gtoken;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
-
-import com.glic.gtoken.VHTSResult;
 
 import lombok.Data;
 
@@ -19,8 +16,6 @@ public class TokenizeResult extends VHTSResult implements Serializable {
 
    private LocalDate tokenExpirationDate;
 
-   private String tokenStatus;
-
-
+   private TokenStatus tokenStatus;
 
 }

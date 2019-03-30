@@ -4,12 +4,11 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.validator.routines.checkdigit.LuhnCheckDigit;
+
+import com.glic.util.log.Converter;
 import com.glic.util.log.converter.LogConverter;
 
-/**
- * Created by Jorge_L2 on 14/05/2017.
- * Card scanner Converter.
- */
 public class CardScannerConverter implements LogConverter {
 
    private static final Pattern PATTERN;
@@ -24,7 +23,6 @@ public class CardScannerConverter implements LogConverter {
       PATTERN = Pattern.compile(pattern, Pattern.DOTALL);
    }
 
-   //TODO TERMINAR
    @Override
    public String convert(String value) {
       if (Objects.isNull(value)) {
@@ -33,11 +31,11 @@ public class CardScannerConverter implements LogConverter {
       Matcher matcher = PATTERN.matcher(value);
       StringBuffer sb = new StringBuffer(value.length());
       while (matcher.find()) {
-        // if (LuhnCheckDigit.LUHN_CHECK_DIGIT.isValid(matcher.group())) {
-         //   matcher.appendReplacement(sb, Converter.CARD.convert(matcher.group()));
-       //  } else {
+         if (LuhnCheckDigit.LUHN_CHECK_DIGIT.isValid(matcher.group())) {
+            matcher.appendReplacement(sb, Converter.CARD.convert(matcher.group()));
+         } else {
             matcher.appendReplacement(sb, matcher.group());
-        // }
+         }
       }
       matcher.appendTail(sb);
       return sb.toString();

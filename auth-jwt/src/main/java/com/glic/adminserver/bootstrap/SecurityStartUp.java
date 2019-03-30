@@ -8,8 +8,8 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import com.glic.adminserver.model.AppUser;
 import com.glic.adminserver.entities.AppUserRepository;
+import com.glic.adminserver.model.AppUser;
 import com.glic.adminserver.model.EUserStatus;
 import com.glic.jwt.AppRole;
 
@@ -34,8 +34,9 @@ public class SecurityStartUp implements ApplicationListener<ApplicationReadyEven
             createTestingUser("deleted@root.com", "deleted", AppRole.ROLE_ADMIN, "deleted user", EUserStatus.DELETED);
             createTestingUser("inactive@root.com", "inactive", AppRole.ROLE_ADMIN, "inactive user", EUserStatus.INACTIVE);
             //GTOKEN USERS
-            createTestingUser("gtokenonline@glic-solutions.com", "root", AppRole.ROLE_GTOKEN_ONLINE, "inactive user", EUserStatus.ACTIVE);
-            createTestingUser("gtokenadmin@glic-solutions.com", "root", AppRole.ROLE_GTOKEN_ADMIN, "inactive user", EUserStatus.ACTIVE);
+            createTestingUser("gtokenonline@glic-solutions.com", "root", AppRole.ROLE_GTOKEN_ONLINE, "gtoken online user", EUserStatus.ACTIVE);
+            createTestingUser("gtokenonline2@glic-solutions.com", "root", AppRole.ROLE_GTOKEN_ONLINE, "gtoken online user 2", EUserStatus.ACTIVE);
+            createTestingUser("gtokenadmin@glic-solutions.com", "root", AppRole.ROLE_GTOKEN_ADMIN, "gtoken admin user", EUserStatus.ACTIVE);
          } catch (Exception e) {
             LOG.error("Error on start up", e);
          }
@@ -55,7 +56,6 @@ public class SecurityStartUp implements ApplicationListener<ApplicationReadyEven
       user.setRole(role);
       user.setNameToShow(userToShow);
       user.setDescription(userToShow);
-      user.setEntityId("entity-0001");
       user.setStatus(status);
       appUserRepository.save(user);
 

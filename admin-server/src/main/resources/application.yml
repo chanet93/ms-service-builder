@@ -12,6 +12,8 @@ spring:
           enabled: true
           to: mauricio.fenoglio@glic-solutions.com
           from: no-reply@glic-solutions.com
+      monitor:
+        default-timeout: 20000
   mail:
     host: smtp.gmail.com
     port: 587

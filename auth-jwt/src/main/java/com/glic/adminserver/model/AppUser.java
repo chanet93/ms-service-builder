@@ -58,8 +58,6 @@ public class AppUser implements UserDetails {
 
    private String role;
 
-   private String entityId;
-
    private EUserStatus status;
 
    @Override

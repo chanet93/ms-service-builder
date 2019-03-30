@@ -1,6 +1,6 @@
 package com.glic.adminserver.security;
 
-import static com.glic.jwt.JwtUtil.ENTITY_ID_CLAIM;
+import static com.glic.jwt.JwtUtil.EMAIL_CLAIM;
 import static com.glic.jwt.JwtUtil.GENERAL_ROLE_CLAIM;
 
 import java.util.Date;
@@ -41,7 +41,7 @@ public class JwtTokenProvider {
             .setIssuedAt(new Date())
             .setExpiration(expiryDate)
             .signWith(SignatureAlgorithm.HS512, jwtSecret)
-            .claim(ENTITY_ID_CLAIM, userPrincipal.getEntityId())
+            .claim(EMAIL_CLAIM, userPrincipal.getEmail())
             .claim(GENERAL_ROLE_CLAIM, userPrincipal.getRole())
             .compact();
    }
