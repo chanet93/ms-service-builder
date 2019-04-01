@@ -36,7 +36,6 @@ public class JwtUtil {
       //TODO add SSL and change this to secure.
       jwtCookie.setSecure(false);
       jwtCookie.setHttpOnly(true);
-      jwtCookie.setDomain(null);
       jwtCookie.setMaxAge(-1);
       jwtCookie.setPath("/");
       return jwtCookie;
