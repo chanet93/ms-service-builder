@@ -35,9 +35,9 @@ public class JwtUtil {
       Cookie jwtCookie = new Cookie(JWT_COOKIE_NAME, JwtToken);
       //TODO add SSL and change this to secure.
       jwtCookie.setSecure(false);
-      jwtCookie.setHttpOnly(false);
+      jwtCookie.setHttpOnly(true);
       jwtCookie.setMaxAge(-1);
-      jwtCookie.setPath("/");
+      jwtCookie.setPath("/mt-api");
       return jwtCookie;
    }
 
