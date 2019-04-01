@@ -2,6 +2,7 @@ package com.glic.adminserver.api;
 
 import static com.glic.jwt.JwtUtil.getJwtCookie;
 import static com.glic.jwt.JwtUtil.getJwtFromRequest;
+import static com.glic.jwt.JwtUtil.getLogoutJwtCookie;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -87,6 +88,12 @@ public class AuthController {
    public ResponseEntity<?> validateToken(HttpServletRequest request) {
       String jwt = getJwtFromRequest(request);
       return ResponseEntity.ok(tokenProvider.validateToken(jwt));
+   }
+
+   @PostMapping("/logout")
+   public ResponseEntity<?> logout(HttpServletResponse httpResponse) {
+      httpResponse.addCookie(getLogoutJwtCookie());
+      return ResponseEntity.status(HttpStatus.OK).build();
    }
 
    @RequestMapping(value = "/activate", method = RequestMethod.PUT)

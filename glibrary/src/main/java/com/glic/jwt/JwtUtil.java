@@ -41,4 +41,14 @@ public class JwtUtil {
       return jwtCookie;
    }
 
+   public static Cookie getLogoutJwtCookie() {
+      Cookie jwtCookie = new Cookie(JWT_COOKIE_NAME, "");
+      //TODO add SSL and change this to secure.
+      jwtCookie.setSecure(false);
+      jwtCookie.setHttpOnly(true);
+      jwtCookie.setMaxAge(0);
+      jwtCookie.setPath("/mt-api");
+      return jwtCookie;
+   }
+
 }
