@@ -12,4 +12,10 @@ public class AppRole {
 
    public static final String ROLE_GPORTAL_MUSER = "ROLE_GPORTAL_MUSER";
 
+   //GTOKEN ROLES
+
+
+
+
+
 }

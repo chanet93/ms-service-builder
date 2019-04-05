@@ -8,7 +8,7 @@ spring:
     emailBaseLink: http://payment.glic-solutions.com:8380
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://postgres:5432/postgres
+    url: jdbc:postgresql://postgres:5432/jwtauth
     username: postgres
     password: postgres
     platform: POSTGRESQL

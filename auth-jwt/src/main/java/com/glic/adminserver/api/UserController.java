@@ -24,7 +24,7 @@ import com.glic.adminserver.entities.AppUserRepository;
 import com.glic.adminserver.mails.EmailService;
 import com.glic.adminserver.model.ApiResponse;
 import com.glic.adminserver.model.AppUser;
-import com.glic.adminserver.model.EUserStatus;
+import com.glic.jwt.EUserStatus;
 import com.glic.adminserver.model.SignUpRequest;
 import com.glic.adminserver.security.SecureRandomService;
 import com.glic.jwt.AppRole;
@@ -112,7 +112,7 @@ public class UserController {
       user.setStatus(EUserStatus.INACTIVE);
       user.setActivatioToken(secureRandomService.getActivationToken());
       user.setActivationTokenValidity(LocalDateTime.now().plusMinutes(15));
-      //TODO Send email to activate the user
+      //TODO Send userId to activate the user
       emailService.sendUserEmail(user, EmailService.EmailTypes.ACTIVATION);
       return new ResponseEntity<>(appUserRepository.save(user), HttpStatus.OK);
    }
