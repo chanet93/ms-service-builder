@@ -34,7 +34,7 @@ import com.glic.adminserver.entities.AppUserRepository;
 import com.glic.adminserver.mails.EmailService;
 import com.glic.adminserver.model.ActivateRequest;
 import com.glic.adminserver.model.AppUser;
-import com.glic.adminserver.model.EUserStatus;
+import com.glic.jwt.EUserStatus;
 import com.glic.adminserver.model.RecoveryRequest;
 import com.glic.adminserver.security.JwtTokenProvider;
 import com.glic.adminserver.security.SecureRandomService;

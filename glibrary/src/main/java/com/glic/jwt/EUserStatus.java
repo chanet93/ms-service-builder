@@ -1,4 +1,4 @@
-package com.glic.adminserver.model;
+package com.glic.jwt;
 
 public enum EUserStatus {
 

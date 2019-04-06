@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 import com.glic.adminserver.entities.AppUserRepository;
 import com.glic.adminserver.model.AppUser;
-import com.glic.adminserver.model.EUserStatus;
+import com.glic.jwt.EUserStatus;
 import com.glic.jwt.AppRole;
 
 @Component

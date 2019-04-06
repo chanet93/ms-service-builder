@@ -16,6 +16,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.glic.jwt.EUserStatus;
 import com.glic.payment.model.GlicLocalDateTime;
 
 import lombok.Data;
