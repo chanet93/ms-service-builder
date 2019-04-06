@@ -6,6 +6,8 @@ spring:
       config:
         enabled: true
         fail-fast: false
+      discovery:
+        instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
   application:
     name: host-simulator
 logging:
