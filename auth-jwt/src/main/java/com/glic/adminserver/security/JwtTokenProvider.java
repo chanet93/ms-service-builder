@@ -46,6 +46,27 @@ public class JwtTokenProvider {
             .compact();
    }
 
+   public String renewToken(String token) {
+      Claims claims = Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody();
+      Date expiryDate = claims.getExpiration();
+      Date now = new Date();
+      if (expiryDate.before(now)) {
+         expiryDate = new Date(now.getTime() + jwtExpirationInMs);
+         return Jwts
+               .builder()
+               .setSubject(claims.getSubject())
+               .setIssuedAt(new Date())
+               .setExpiration(expiryDate)
+               .signWith(SignatureAlgorithm.HS512, jwtSecret)
+               .claim(EMAIL_CLAIM, claims.get(EMAIL_CLAIM))
+               .claim(GENERAL_ROLE_CLAIM, claims.get(GENERAL_ROLE_CLAIM))
+               .compact();
+
+      } else {
+         return "";
+      }
+   }
+
    public String getUserIdFromJWT(String token) {
       Claims claims = Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody();
       return claims.getSubject();

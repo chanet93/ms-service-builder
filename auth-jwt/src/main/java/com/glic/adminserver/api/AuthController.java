@@ -34,10 +34,10 @@ import com.glic.adminserver.entities.AppUserRepository;
 import com.glic.adminserver.mails.EmailService;
 import com.glic.adminserver.model.ActivateRequest;
 import com.glic.adminserver.model.AppUser;
-import com.glic.jwt.EUserStatus;
 import com.glic.adminserver.model.RecoveryRequest;
 import com.glic.adminserver.security.JwtTokenProvider;
 import com.glic.adminserver.security.SecureRandomService;
+import com.glic.jwt.EUserStatus;
 import com.glic.jwt.JwtAuthenticationResponse;
 import com.glic.jwt.LoginRequest;
 
@@ -88,6 +88,17 @@ public class AuthController {
    public ResponseEntity<?> validateToken(HttpServletRequest request) {
       String jwt = getJwtFromRequest(request);
       return ResponseEntity.ok(tokenProvider.validateToken(jwt));
+   }
+
+   @GetMapping("/renewToken")
+   public ResponseEntity<?> renewToken(HttpServletRequest request) {
+      String jwt = getJwtFromRequest(request);
+      String jwtRenew = tokenProvider.renewToken(jwt);
+      if (StringUtils.isNotEmpty(jwtRenew)) {
+         return ResponseEntity.ok(jwtRenew);
+      } else {
+         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+      }
    }
 
    @PostMapping("/logout")
