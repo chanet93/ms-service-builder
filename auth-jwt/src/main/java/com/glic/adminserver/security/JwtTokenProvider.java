@@ -50,7 +50,7 @@ public class JwtTokenProvider {
       Claims claims = Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody();
       Date expiryDate = claims.getExpiration();
       Date now = new Date();
-      if (expiryDate.before(now)) {
+      if (expiryDate.after(now)) {
          expiryDate = new Date(now.getTime() + jwtExpirationInMs);
          return Jwts
                .builder()
@@ -61,7 +61,6 @@ public class JwtTokenProvider {
                .claim(EMAIL_CLAIM, claims.get(EMAIL_CLAIM))
                .claim(GENERAL_ROLE_CLAIM, claims.get(GENERAL_ROLE_CLAIM))
                .compact();
-
       } else {
          return "";
       }
