@@ -2,7 +2,6 @@ package com.glic.adminserver.api;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,7 +12,6 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -27,6 +25,7 @@ import com.glic.jwt.EUserStatus;
 import com.glic.adminserver.model.SignUpRequest;
 import com.glic.adminserver.security.SecureRandomService;
 import com.glic.jwt.AppRole;
+import com.glic.payment.model.general.BasicString;
 
 import freemarker.template.TemplateException;
 
@@ -121,7 +120,7 @@ public class UserController {
    }
 
    @RequestMapping(value = "/roles", method = RequestMethod.GET)
-   public List<String> getRoles() {
+   public List<BasicString> getRoles() {
       return AppRole.getRoles();
    }
 
