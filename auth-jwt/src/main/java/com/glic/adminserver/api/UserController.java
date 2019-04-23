@@ -2,6 +2,8 @@ package com.glic.adminserver.api;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import javax.annotation.security.RolesAllowed;
@@ -11,14 +13,11 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.glic.adminserver.entities.AppUserRepository;
 import com.glic.adminserver.mails.EmailService;
@@ -49,8 +48,12 @@ public class UserController {
    private SecureRandomService secureRandomService;
 
    @RequestMapping(value = "/user", method = RequestMethod.GET)
-   public Page<AppUser> listUser(Pageable pageable) {
-      return appUserRepository.findAll(pageable);
+   public Page<AppUser> listUser(Pageable pageable, @RequestParam Optional<String> email) {
+      if (email.isPresent()) {
+         return appUserRepository.findByEmail(email, pageable);
+      } else {
+         return appUserRepository.findAll(pageable);
+      }
    }
 
    @RequestMapping(value = "/user/{email}", method = RequestMethod.GET)
@@ -115,6 +118,11 @@ public class UserController {
       //TODO Send userId to activate the user
       emailService.sendUserEmail(user, EmailService.EmailTypes.ACTIVATION);
       return new ResponseEntity<>(appUserRepository.save(user), HttpStatus.OK);
+   }
+
+   @RequestMapping(value = "/roles", method = RequestMethod.GET)
+   public List<String> getRoles() {
+      return AppRole.getRoles();
    }
 
 }
