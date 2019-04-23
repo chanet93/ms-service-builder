@@ -116,7 +116,7 @@ public class AuthController {
       if (user.isPresent()) {
          AppUser userExist = user.get();
          if (userExist.getStatus() == EUserStatus.INACTIVE && StringUtils.equalsIgnoreCase(userExist.getActivatioToken(),
-               activateRequest.getActivatioToken()) && isActiveToken(userExist.getActivationTokenValidity())) {
+               activateRequest.getActivationToken()) && isActiveToken(userExist.getActivationTokenValidity())) {
             userExist.setStatus(EUserStatus.ACTIVE);
             userExist.setActivationTokenValidity(LocalDateTime.MIN);
             userExist.setPassword(passwordEncoder.encode(activateRequest.getPassword()));

@@ -15,7 +15,7 @@ public class ActivateRequest {
    private String email;
 
    @Size(max = 255)
-   private String activatioToken;
+   private String activationToken;
 
    @javax.validation.constraints.NotBlank
    @Size(max = 50)
