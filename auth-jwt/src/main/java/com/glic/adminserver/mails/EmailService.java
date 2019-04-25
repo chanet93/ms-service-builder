@@ -75,8 +75,8 @@ public class EmailService {
    }
 
    public enum EmailTypes {
-      ACTIVATION("Activa tu cuenta", "{0}/activation?userId={1}&token={2}"),
-      RECOVERY("Recupera tu password", "{0}/recovery?userId={1}&token={2}");
+      ACTIVATION("Activa tu cuenta", "{0}/#/activation?userId={1}&token={2}"),
+      RECOVERY("Recupera tu password", "{0}/#/recovery?userId={1}&token={2}");
 
       private final String subject;
 
