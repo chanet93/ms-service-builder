@@ -2,7 +2,7 @@ spring:
   application:
     jwtSecret: glic-ms-jwt
     jwtExpirationInMs: 18000000
-    jwtExcludePath: /**/auth/login,/**/annon/**,/actuator/**,/favicon.ico
+    jwtExcludePath: /**/auth/login,/**/auth/sendRecovery/**,/**/auth/activate,/**/auth/recovery,/**/annon/**,/actuator/**,/favicon.ico
     activeEmail: true
     fromAddress: no-reply@glic-solutions.com
     emailBaseLink: http://payment.glic-solutions.com:8380
