@@ -118,7 +118,7 @@ public class AuthController {
          if (userExist.getStatus() == EUserStatus.INACTIVE && StringUtils.equalsIgnoreCase(userExist.getActivatioToken(),
                activateRequest.getActivationToken()) && isActiveToken(userExist.getActivationTokenValidity())) {
             userExist.setStatus(EUserStatus.ACTIVE);
-            userExist.setActivationTokenValidity(LocalDateTime.MIN);
+            userExist.setActivationTokenValidity(LocalDateTime.now().minusYears(1));
             userExist.setPassword(passwordEncoder.encode(activateRequest.getPassword()));
             return new ResponseEntity<>(appUserRepository.save(userExist), HttpStatus.OK);
          } else {
@@ -152,7 +152,7 @@ public class AuthController {
          if (userExist.getStatus() == EUserStatus.ACTIVE && StringUtils.equalsIgnoreCase(userExist.getRecoveryToken(),
                recoveryRequest.getRecoveryToken()) && isActiveToken(userExist.getRecoveryTokenValidity())) {
             userExist.setPassword(passwordEncoder.encode(recoveryRequest.getNewPassword()));
-            userExist.setRecoveryTokenValidity(LocalDateTime.MIN);
+            userExist.setRecoveryTokenValidity(LocalDateTime.now().minusYears(1));
             return new ResponseEntity<>(appUserRepository.save(userExist), HttpStatus.OK);
          } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
