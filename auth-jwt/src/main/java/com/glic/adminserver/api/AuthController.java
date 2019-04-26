@@ -3,6 +3,7 @@ package com.glic.adminserver.api;
 import static com.glic.jwt.JwtUtil.getJwtCookie;
 import static com.glic.jwt.JwtUtil.getJwtFromRequest;
 import static com.glic.jwt.JwtUtil.getLogoutJwtCookie;
+import static com.glic.util.DateTimeUtils.getPreviousValue;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -118,7 +119,8 @@ public class AuthController {
          if (userExist.getStatus() == EUserStatus.INACTIVE && StringUtils.equalsIgnoreCase(userExist.getActivatioToken(),
                activateRequest.getActivationToken()) && isActiveToken(userExist.getActivationTokenValidity())) {
             userExist.setStatus(EUserStatus.ACTIVE);
-            userExist.setActivationTokenValidity(LocalDateTime.now().minusYears(1));
+            userExist.setActivationTokenValidity(getPreviousValue());
+            userExist.setRecoveryTokenValidity(getPreviousValue());
             userExist.setPassword(passwordEncoder.encode(activateRequest.getPassword()));
             return new ResponseEntity<>(appUserRepository.save(userExist), HttpStatus.OK);
          } else {
@@ -152,7 +154,8 @@ public class AuthController {
          if (userExist.getStatus() == EUserStatus.ACTIVE && StringUtils.equalsIgnoreCase(userExist.getRecoveryToken(),
                recoveryRequest.getRecoveryToken()) && isActiveToken(userExist.getRecoveryTokenValidity())) {
             userExist.setPassword(passwordEncoder.encode(recoveryRequest.getNewPassword()));
-            userExist.setRecoveryTokenValidity(LocalDateTime.now().minusYears(1));
+            userExist.setRecoveryTokenValidity(getPreviousValue());
+            userExist.setActivationTokenValidity(getPreviousValue());
             return new ResponseEntity<>(appUserRepository.save(userExist), HttpStatus.OK);
          } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
