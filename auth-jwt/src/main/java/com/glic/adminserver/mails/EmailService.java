@@ -55,10 +55,10 @@ public class EmailService {
          Map<String, String> variables = new HashMap<>();
          if (type == EmailTypes.ACTIVATION) {
             variables.put("activationLink", EmailTypes.ACTIVATION.getUrl(emailBaseLink, user.getEmail(), user.getActivatioToken()));
-            variables.put("activationExpDate", user.getActivationTokenValidity().format(DateTimeFormatter.ofPattern("YYYY/MM/dd HH:MM")));
+            variables.put("activationExpDate", user.getActivationTokenValidity().format(DateTimeFormatter.ofPattern("YYYY/MM/dd HH:mm")));
          } else {
             variables.put("recoveryLink", EmailTypes.RECOVERY.getUrl(emailBaseLink, user.getEmail(), user.getRecoveryToken()));
-            variables.put("recoveryExpDate", user.getRecoveryTokenValidity().format(DateTimeFormatter.ofPattern("YYYY/MM/dd HH:MM")));
+            variables.put("recoveryExpDate", user.getRecoveryTokenValidity().format(DateTimeFormatter.ofPattern("YYYY/MM/dd HH:mm")));
          }
 
          variables.put("name", user.getNameToShow());
