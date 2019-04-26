@@ -115,21 +115,9 @@ public class AuthController {
 
    @RequestMapping(value = "/activate", method = RequestMethod.PUT)
    public ResponseEntity<AppUser> activate(@Valid @RequestBody ActivateRequest activateRequest) {
-
-      log.info("-{}-", activateRequest.getActivationToken());
-      log.info("-{}-", activateRequest.getEmail());
-
-
       Optional<AppUser> user = appUserRepository.findByEmail(activateRequest.getEmail());
       if (user.isPresent()) {
          AppUser userExist = user.get();
-
-         log.info("-{}-", userExist.getActivatioToken());
-         log.info("-{}-", userExist.getEmail());
-         log.info("-{}-", userExist.getActivationTokenValidity());
-         log.info("-{}-", isActiveToken(userExist.getActivationTokenValidity()));
-
-
          if (userExist.getStatus() == EUserStatus.INACTIVE && StringUtils.equalsIgnoreCase(userExist.getActivatioToken(),
                activateRequest.getActivationToken()) && isActiveToken(userExist.getActivationTokenValidity())) {
             userExist.setStatus(EUserStatus.ACTIVE);
@@ -180,7 +168,7 @@ public class AuthController {
    }
 
    private boolean isActiveToken(LocalDateTime expDateTime) {
-      return expDateTime.isBefore(LocalDateTime.now());
+      return expDateTime.isAfter(LocalDateTime.now());
    }
 
 }
