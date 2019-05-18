@@ -2,7 +2,6 @@ package com.glic.hostsimulator.tcp.model;
 
 import wiremock.com.fasterxml.jackson.annotation.JsonProperty;
 
-
 public class TcpMsgStubbing {
 
    @JsonProperty("request")

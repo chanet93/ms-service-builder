@@ -33,7 +33,8 @@ public class ServicesAuthJwtApplicationTests {
       LoginRequest request = new LoginRequest();
       request.setEmail("root@root.com");
       request.setPassword("root");
-      ResponseEntity<JwtAuthenticationResponse> serviceResponse = this.restT.postForEntity("http://localhost:" + port + "/auth/login", request, JwtAuthenticationResponse.class);
+      ResponseEntity<JwtAuthenticationResponse> serviceResponse = this.restT.postForEntity("http://localhost:" + port + "/auth/login", request,
+            JwtAuthenticationResponse.class);
       Assert.assertTrue(serviceResponse.getStatusCode().is2xxSuccessful());
       log.info("Response:{}", serviceResponse.getBody().getAccessToken());
 

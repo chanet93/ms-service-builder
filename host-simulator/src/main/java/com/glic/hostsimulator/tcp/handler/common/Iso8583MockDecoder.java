@@ -7,22 +7,16 @@ import io.netty.channel.ChannelHandler.Sharable;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageDecoder;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.jpos.iso.ISOMsg;
 import org.jpos.iso.ISOPackager;
 
 import com.glic.hostsimulator.common.exception.MockServerException;
 
 import lombok.extern.log4j.Log4j2;
-import lombok.extern.slf4j.Slf4j;
-
-
 
 @Sharable
 @Log4j2
 public class Iso8583MockDecoder extends MessageToMessageDecoder<ByteBuf> {
-
 
    private ISOPackager packager;
 

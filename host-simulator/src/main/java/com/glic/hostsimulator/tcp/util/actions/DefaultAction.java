@@ -8,7 +8,6 @@ import com.glic.hostsimulator.tcp.ServerTcp;
 import com.glic.hostsimulator.tcp.StubbingTcp;
 import com.glic.hostsimulator.tcp.handler.common.StubTcpHandler;
 
-
 public class DefaultAction implements IAction {
 
    @Override

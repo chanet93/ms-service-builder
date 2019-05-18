@@ -20,14 +20,17 @@ import com.glic.jwt.EUserStatus;
 import com.glic.payment.model.GlicLocalDateTime;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Entity
 @Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class AppUser implements UserDetails {
 
    @Id
    @NotBlank
    @Size(max = 50)
+   @EqualsAndHashCode.Include
    private String email;
 
    private String nameToShow;

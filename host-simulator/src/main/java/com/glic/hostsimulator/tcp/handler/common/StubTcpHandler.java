@@ -52,7 +52,6 @@ public class StubTcpHandler extends ChannelDuplexHandler {
       StubTcpHandler.executor = executor;
    }
 
-
    public static class HandleExceptionListener implements ChannelFutureListener {
 
       @Override

@@ -1,6 +1,5 @@
 package com.glic.adminserver.model;
 
-
 public class ApiResponse {
 
    private Boolean success;

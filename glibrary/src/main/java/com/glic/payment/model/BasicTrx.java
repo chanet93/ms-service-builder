@@ -25,14 +25,17 @@ import com.glic.payment.constants.ETrxStatus;
 import com.glic.payment.constants.ETrxType;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
 @Entity
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class BasicTrx {
 
    @Id
    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+   @EqualsAndHashCode.Include
    private Long trxId;
 
    private Long originalTrxId;

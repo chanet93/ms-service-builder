@@ -2,7 +2,6 @@ package com.glic.hostsimulator.tcp.model;
 
 import java.util.Map;
 
-
 public class TcpResponseDefinition {
 
    private String mti;

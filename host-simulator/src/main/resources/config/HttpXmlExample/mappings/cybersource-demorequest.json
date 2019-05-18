@@ -1,12 +1,12 @@
 {
-  "request" : {
-    "url" : "/cybersource"
+  "request": {
+    "url": "/cybersource"
   },
-  "response" : {
-    "status" : 200,
+  "response": {
+    "status": 200,
     "headers": {
       "Content-Type": "text/xml;charset=UTF-8"
     },
-    "body" : "Response From Host Simulator"
+    "body": "Response From Host Simulator"
   }
 }

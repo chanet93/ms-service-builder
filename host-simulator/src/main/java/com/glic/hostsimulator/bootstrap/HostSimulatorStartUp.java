@@ -58,7 +58,7 @@ public class HostSimulatorStartUp implements ApplicationListener<ApplicationRead
                }
                break;
             case TCP:
-               server =  new StandaloneTcpMockServer();
+               server = new StandaloneTcpMockServer();
                try {
                   log.info(mockServer.toString());
                   server.startServer(mockServer);

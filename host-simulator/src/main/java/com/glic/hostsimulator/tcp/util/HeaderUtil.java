@@ -4,7 +4,6 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 
 import io.netty.buffer.ByteBuf;
 
-
 public final class HeaderUtil {
 
    public static final String RESPONSE_HEADER_NULL_ISO = "PP|0002|002000|000016|000000|00|000001|{}|2000020060057000";

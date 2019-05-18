@@ -12,6 +12,7 @@
         <groupId>com.glic</groupId>
         <artifactId>ms-service-root</artifactId>
         <version>2.21-SNAPSHOT</version>
+        <relativePath></relativePath>
     </parent>
 
     <dependencies>

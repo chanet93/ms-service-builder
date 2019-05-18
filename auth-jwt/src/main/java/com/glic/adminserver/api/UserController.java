@@ -15,16 +15,21 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.glic.adminserver.entities.AppUserRepository;
 import com.glic.adminserver.mails.EmailService;
 import com.glic.adminserver.model.ApiResponse;
 import com.glic.adminserver.model.AppUser;
-import com.glic.jwt.EUserStatus;
 import com.glic.adminserver.model.SignUpRequest;
 import com.glic.adminserver.security.SecureRandomService;
 import com.glic.jwt.AppRole;
+import com.glic.jwt.EUserStatus;
 import com.glic.payment.model.general.BasicString;
 
 import freemarker.template.TemplateException;

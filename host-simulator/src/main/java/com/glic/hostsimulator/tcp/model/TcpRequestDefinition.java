@@ -6,7 +6,6 @@ import wiremock.com.fasterxml.jackson.annotation.JsonProperty;
 import wiremock.com.fasterxml.jackson.core.JsonProcessingException;
 import wiremock.com.fasterxml.jackson.databind.ObjectMapper;
 
-
 public class TcpRequestDefinition {
 
    private static final ObjectMapper ow = new ObjectMapper();

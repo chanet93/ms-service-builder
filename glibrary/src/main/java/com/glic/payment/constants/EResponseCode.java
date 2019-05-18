@@ -12,7 +12,8 @@ public enum EResponseCode {
    REFUND_TO_NOT_APPROVED_TRX("10008"),
    REVERSE_TO_NOT_APPROVED_TRX("10009"),
    ERROR_CALL_GW("10010"),
-   ACQUIRER_DECLINE("10011");
+   ACQUIRER_DECLINE("10011"),
+   ACQUIRER_MODULE_ERROR("10012");
 
    private final String code;
 

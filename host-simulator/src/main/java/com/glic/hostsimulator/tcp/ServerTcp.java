@@ -27,7 +27,6 @@ import com.glic.hostsimulator.tcp.model.TcpMsgStubbing;
 import wiremock.com.fasterxml.jackson.databind.ObjectMapper;
 import wiremock.org.apache.commons.lang3.StringUtils;
 
-
 public class ServerTcp {
 
    private static final Logger LOG = LogManager.getLogger(ServerTcp.class);

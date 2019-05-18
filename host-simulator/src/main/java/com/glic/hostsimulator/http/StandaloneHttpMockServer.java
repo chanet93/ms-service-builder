@@ -5,7 +5,6 @@ import com.glic.hostsimulator.common.IMockServer;
 import com.glic.hostsimulator.common.exception.MockServerException;
 import com.glic.hostsimulator.http.log.HttpLogFilter;
 
-
 public class StandaloneHttpMockServer extends HttpMockServer implements IMockServer {
 
    @Override

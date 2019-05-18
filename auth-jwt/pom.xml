@@ -16,6 +16,7 @@
         <groupId>com.glic</groupId>
         <artifactId>ms-service-root</artifactId>
         <version>2.21-SNAPSHOT</version>
+        <relativePath></relativePath>
     </parent>
 
 
@@ -107,6 +108,14 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
             </plugin>
         </plugins>
     </build>

@@ -1,6 +1,5 @@
 package com.glic.hostsimulator.common.exception;
 
-
 public class MockServerException extends Exception {
 
    private static final long serialVersionUID = 1L;

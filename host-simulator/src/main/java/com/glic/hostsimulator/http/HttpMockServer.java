@@ -2,8 +2,8 @@ package com.glic.hostsimulator.http;
 
 import static com.github.tomakehurst.wiremock.core.Options.DYNAMIC_PORT;
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig;
-import static java.nio.charset.StandardCharsets.UTF_8;
 
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
 import java.util.List;
 
@@ -25,7 +25,7 @@ public class HttpMockServer {
 
    private static final String STUB_FILE_EXTENSION = ".json";
 
-   private WireMockServer wireMockServer;
+   private WireMockServer wireMockServer = null;
 
    protected WireMockConfiguration getHttpWireMockConfiguration(int port, Extension... extensions) throws MockServerException {
       WireMockConfiguration result = HttpMockServer.getBasicServerOptionConfig(extensions);
@@ -78,7 +78,7 @@ public class HttpMockServer {
 
    public final void addMappingFromFile(String jsonFilePath) throws MockServerException {
       try {
-         String json = Resources.toString(Resources.getResource(jsonFilePath), UTF_8);
+         String json = Resources.toString(Resources.getResource(jsonFilePath), StandardCharsets.UTF_8);
          this.addMappingFromJson(json);
       } catch (MockServerException e) {
          throw e;
@@ -89,7 +89,7 @@ public class HttpMockServer {
 
    public final void addMappingFromFolder(String jsonFolderPath) throws MockServerException {
       try {
-         List<String> files = Resources.readLines(Resources.getResource(jsonFolderPath), UTF_8);
+         List<String> files = Resources.readLines(Resources.getResource(jsonFolderPath), StandardCharsets.UTF_8);
          for (String file : files) {
             if (file.endsWith(STUB_FILE_EXTENSION)) {
                this.addMappingFromFile(jsonFolderPath + "/" + file);

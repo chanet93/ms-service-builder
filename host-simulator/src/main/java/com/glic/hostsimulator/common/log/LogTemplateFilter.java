@@ -74,7 +74,7 @@ public interface LogTemplateFilter<T, U> {
     * of an url as a Map<String, List<String>>.
     *
     * @param query query
-    * @return Map<String ,   List < String>>
+    * @return Map<String, List < String>>
     */
    default Map<String, List<String>> getQueryParams(String query) {
       Map<String, List<String>> params = new HashMap<>();

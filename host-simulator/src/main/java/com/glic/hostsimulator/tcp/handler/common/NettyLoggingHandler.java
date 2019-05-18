@@ -6,15 +6,10 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelPromise;
 import io.netty.handler.logging.LoggingHandler;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import lombok.extern.log4j.Log4j2;
-import lombok.extern.slf4j.Slf4j;
 
 @Log4j2
 public class NettyLoggingHandler extends LoggingHandler {
-
 
    @Override
    public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
