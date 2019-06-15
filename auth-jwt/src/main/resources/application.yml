@@ -10,7 +10,7 @@ spring:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://postgres:5643/jwtauth
     username: postgres
-    password: "Re$$$..123@"
+    password: "Re__T..123@"
     platform: POSTGRESQL
     testWhileIdle: true
     validationQuery: SELECT 1
