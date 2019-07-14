@@ -9,10 +9,10 @@
     <version>2.21-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <modules>        
+    <modules>
         <module>admin-server</module>
         <module>auth-jwt</module>
-	    <module>glibrary</module>
+        <module>glibrary</module>
         <module>crypto-utils</module>
         <module>host-simulator</module>
     </modules>
