@@ -10,7 +10,7 @@
         <wiremock.version>2.6.0</wiremock.version>
         <jaxb-api.version>2.3.0</jaxb-api.version>
         <guava.version>21.0</guava.version>
-        <netty-all.version>4.1.14.Final</netty-all.version>
+        <netty-all.version>4.1.42.Final</netty-all.version>
         <javax.activation.version>1.2.0</javax.activation.version>
         <jpos.version>2.0.10</jpos.version>
     </properties>
