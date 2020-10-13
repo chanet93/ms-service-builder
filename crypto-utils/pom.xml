@@ -20,7 +20,7 @@
         <commons-pool2.version>2.4.2</commons-pool2.version>
         <commons-io.version>2.5</commons-io.version>
         <commons-codec.version>1.10</commons-codec.version>
-        <junit.version>4.11</junit.version>
+        <junit.version>4.13.1</junit.version>
         <metrics-core.version>3.1.0</metrics-core.version>
         <maven-jar-plugin.version>2.5</maven-jar-plugin.version>
         <cobertura-maven-plugin.version>2.7</cobertura-maven-plugin.version>
